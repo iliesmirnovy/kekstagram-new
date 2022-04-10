@@ -5,7 +5,7 @@ function getRandomIntFromRange(value1, value2) {
     if (typeof(value1) !== 'number' || typeof(value2) !== 'number') {
         return console.log('В функцию передано не число');
     }
-    // Определяем минимальное и маскимальное число
+    // Определяем минимальное и максимальное число
     let valueMin = value1;
     let valueMax = value2;
     if (valueMin > valueMax) {

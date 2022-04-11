@@ -1,5 +1,3 @@
-console.log('Модуль load.js подключён');
-
 function loadData(url, cb) {
     fetch(url)
     .then((response) => {
@@ -12,7 +10,8 @@ function loadData(url, cb) {
     .then((response) => response.json())
     .then((data) => {
         cb(data);
+        //console.log(data)
     })
 }
 
-//loadData('https://24.javascript.pages.academy/kekstagram/data', console.log);
+export {loadData};

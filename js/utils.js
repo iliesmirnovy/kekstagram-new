@@ -1,5 +1,3 @@
-console.log('Модуль utils.js подключён');
-
 function getRandomIntFromRange(value1, value2) {
     // Проверяем переданы ли в функцию числа
     if (typeof(value1) !== 'number' || typeof(value2) !== 'number') {

@@ -1,4 +1,4 @@
-function loadData(url, cb) {
+function loadData(url, cb = console.log) {
     fetch(url)
     .then((response) => {
         if (response.ok) {
@@ -10,7 +10,6 @@ function loadData(url, cb) {
     .then((response) => response.json())
     .then((data) => {
         cb(data);
-        //console.log(data)
     })
 }
 

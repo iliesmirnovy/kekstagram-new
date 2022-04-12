@@ -1,14 +1,5 @@
 import { loadData } from "./load.js";
 
-/* <a href="#" class="picture">
-    <img class="picture__img" src="" width="182" height="182" alt="Случайная фотография">
-    <p class="picture__info">
-    <span class="picture__comments"></span>
-    <span class="picture__likes"></span>
-    </p>
-</a> */
-
-
 const createImages = (data) => {
     const pictureTemplate = document.querySelector('#picture')
     .content

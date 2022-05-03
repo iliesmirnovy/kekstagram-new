@@ -1,4 +1,4 @@
-import { loadData } from "./load.js";
+import {loadData} from "./load.js";
 
 const createImages = (data) => {
     const pictureTemplate = document.querySelector('#picture')

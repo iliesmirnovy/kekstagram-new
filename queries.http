@@ -1,0 +1,31 @@
+HEAD /kekstagram/data HTTP/1.1
+Host: 24.javascript.pages.academy
+
+
+###
+
+
+GET /kekstagram/data HTTP/1.1
+Host: 24.javascript.pages.academy
+
+
+###
+
+
+GET /posts HTTP/1.1
+Host: jsonplaceholder.typicode.com
+
+
+###
+
+
+POST /posts HTTP/1.1
+HOST: jsonplaceholder.typicode.com
+Content-Type: application/json
+Content-Length: 88
+
+{
+    "title": "Новая публикация",
+    "body": "Текст публикации",
+    "userId": 31337
+}

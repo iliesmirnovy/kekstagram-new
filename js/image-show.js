@@ -1,9 +1,37 @@
-import { loadData } from "./load.js";
+import {loadData} from "./load.js";
 
 const pictures = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');
 
-pictures.addEventListener('click', evt => imageShow(evt));
+const imageShow = (evt) => {
+
+    const getImageData = (data) => {
+        data.forEach((image) => {
+            if (!evt.target?.attributes[1]?.nodeValue) {
+                return;
+            }
+            if (image.url == evt.target.attributes[1].nodeValue) {
+                document.body.classList.add('modal-open');
+                bigPicture.classList.remove('hidden');
+                bigPicture.querySelector('.comments-loader').classList.add('hidden'); 
+                bigPicture.querySelector('.social__comment-count').classList.add('hidden'); 
+                bigPicture.querySelector('.big-picture__img img').src = image.url;
+                bigPicture.querySelector('.likes-count').textContent = image.likes;
+                bigPicture.querySelector('.comments-count').textContent = image.comments.length;
+                commentFeedShow(image.comments);
+                bigPicture.querySelector('.social__caption').textContent = image.description;
+            } 
+        })
+    }
+
+    loadData('https://24.javascript.pages.academy/kekstagram/data', getImageData);
+
+    const cancelBigPicture = document.querySelector('#picture-cancel');
+    cancelBigPicture.addEventListener('click', closePopup);
+    document.addEventListener('keydown', closePopupOnEsc);
+}
+
+pictures.addEventListener('click', imageShow);
 
 const commentFeedShow = (array) => {
     const comments = document.querySelector('.social__comments');
@@ -32,30 +60,7 @@ const commentFeedShow = (array) => {
     })
 }
 
-const imageShow = (evt) => {
 
-    const getImageData = (data) => {
-        data.forEach((image) => {
-            if (image.url == evt.target.attributes[1].nodeValue) {
-                bigPicture.classList.remove('hidden');
-                bigPicture.querySelector('.comments-loader').classList.add('hidden'); 
-                bigPicture.querySelector('.social__comment-count').classList.add('hidden'); 
-                document.body.classList.add('modal-open');
-                bigPicture.querySelector('.big-picture__img img').src = image.url;
-                bigPicture.querySelector('.likes-count').textContent = image.likes;
-                bigPicture.querySelector('.comments-count').textContent = image.comments.length;
-                commentFeedShow(image.comments);
-                bigPicture.querySelector('.social__caption').textContent = image.description;
-            } 
-        })
-    }
-
-    loadData('https://24.javascript.pages.academy/kekstagram/data', getImageData);
-
-    const cancelBigPicture = document.querySelector('#picture-cancel');
-    cancelBigPicture.addEventListener('click', closePopup);
-    document.addEventListener('keydown', closePopupOnEsc);
-}
 
 const closePopup = (evt) => {
     bigPicture.classList.add('hidden');
@@ -64,6 +69,7 @@ const closePopup = (evt) => {
 
 const closePopupOnEsc = (evt) => {
     if (evt.keyCode === 27) {
+        evt.preventDefault();
         bigPicture.classList.add('hidden');
         document.body.classList.remove('modal-open');
     }

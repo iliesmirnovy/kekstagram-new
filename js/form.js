@@ -1,4 +1,6 @@
 import './image-editor.js';
+import './image-effect.js';
+
 
 const uploadForm = document.querySelector('#upload-select-image');
 const uploadPhoto = document.querySelector('#upload-file');

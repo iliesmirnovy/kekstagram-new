@@ -4,6 +4,7 @@ let scaleControlInt = parseInt(scaleControlValue.value);
 const scaleControlSmaller = document.querySelector('.scale__control--smaller');
 const scaleControlBigger = document.querySelector('.scale__control--bigger');
 const imagePreview = document.querySelector('.img-upload__preview img');
+imagePreview.style.transition = 'all 0.2s ease-in-out 0s';
 
 const SCALE_INCREMENT = 25;
 const SCALE_MIN = 25;

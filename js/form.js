@@ -1,3 +1,7 @@
+import './image-editor.js';
+import './image-effect.js';
+
+
 const uploadForm = document.querySelector('#upload-select-image');
 const uploadPhoto = document.querySelector('#upload-file');
 const uploadOverlayClose = document.querySelector('#upload-cancel');
@@ -61,11 +65,6 @@ hashtagInput.addEventListener('input', () => {
         hashtagInput.reportValidity();
     })
 })
-
-// const scaleControlValue = document.querySelector('.scale__control--value').value;
-// const scaleControlSmaller = document.querySelector('.scale__control--smaller');
-// const scaleControlBigger = document.querySelector('.scale__control--bigger');
-// const scaleIncrement = 25;
 
 
 

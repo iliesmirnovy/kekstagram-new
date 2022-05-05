@@ -134,3 +134,12 @@ function updateEffectOptions() {
         break;
     }
 }
+
+function resetImagePreviewEffect() {
+    imagePreview.style = '';
+    imagePreview.classList = '';
+    effectList.querySelector('#effect-none').checked = true;
+    effectLevel.classList.add('hidden');
+}
+
+export {resetImagePreviewEffect}

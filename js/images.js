@@ -1,4 +1,5 @@
-import {loadData} from "./load.js";
+import { loadData } from "./load.js";
+import { showStatusMessage } from "./status-messages.js";
 
 const createImages = (data) => {
     const pictureTemplate = document.querySelector('#picture')
@@ -19,4 +20,4 @@ const createImages = (data) => {
     pictures.appendChild(imagesFragment);
 }
 
-loadData('https://24.javascript.pages.academy/kekstagram/data', createImages);
+loadData('https://24.javascript.pages.academy/kekstagram/data', createImages, showStatusMessage('connection-error'));

@@ -1,5 +1,8 @@
 import './image-editor.js';
 import './image-effect.js';
+import { resetImagePreviewEffect } from './image-effect.js';
+import { sendData } from './load.js';
+import { showStatusMessage } from './status-messages.js';
 
 
 const uploadForm = document.querySelector('#upload-select-image');
@@ -7,8 +10,10 @@ const uploadPhoto = document.querySelector('#upload-file');
 const uploadOverlayClose = document.querySelector('#upload-cancel');
 const uploadPhotoOverlay = document.querySelector('.img-upload__overlay');
 
+
 const openModal = (evt) => {
-    if (evt.currentTarget.value) {
+    if (evt.currentTarget.value) { 
+        resetImagePreviewEffect();
         uploadPhotoOverlay.classList.remove('hidden');
         document.body.classList.add('modal-open');
         
@@ -21,14 +26,14 @@ const closeModal = (evt) => {
     uploadPhotoOverlay.classList.add('hidden');
     document.body.classList.remove('modal-open');
     uploadPhoto.value = '';
+    uploadForm.reset()
 }
 
 const closePopupOnEsc = (evt) => {
     if (evt.keyCode === 27) {
         evt.preventDefault();
         closeModal();
-    }
-    
+    }  
 }
 
 uploadPhoto.addEventListener('change', openModal);
@@ -51,7 +56,6 @@ const hashtagRegexp = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
 
 hashtagInput.addEventListener('input', () => {
     const hashtagArray = hashtagInput.value.split(' ');
-    console.log(hashtagArray);
     hashtagArray.forEach((hashtag) => { 
         if (hashtagRegexp.test(hashtag) === false) {
             if (hashtag.length === 1 || hashtag.length === 2 ) {
@@ -66,6 +70,15 @@ hashtagInput.addEventListener('input', () => {
     })
 })
 
+uploadForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    
+    const sendParameters = {
+        method: 'POST',
+        enctype: 'multipart/form-data',
+        body: new FormData(uploadForm),
+    }
+    sendData('https://25.javascript.pages.academy/kekstagram', sendParameters, showStatusMessage('success'), showStatusMessage('error'))
+})
 
-
-
+export { closeModal }

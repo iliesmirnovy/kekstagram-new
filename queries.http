@@ -5,7 +5,7 @@ Host: 24.javascript.pages.academy
 ###
 
 
-GET /kekstagram/data HTTP/1.1
+POST /kekstagram HTTP/1.1
 Host: 24.javascript.pages.academy
 
 

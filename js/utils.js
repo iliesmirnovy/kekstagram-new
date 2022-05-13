@@ -23,3 +23,5 @@ function checkStringLength(string, maxLength) {
     return console.log(string.length >= maxLength ? true : false);
 }
 
+
+export { getRandomIntFromRange }

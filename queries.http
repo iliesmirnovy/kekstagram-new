@@ -12,8 +12,8 @@ Host: 24.javascript.pages.academy
 ###
 
 
-GET /posts HTTP/1.1
-Host: jsonplaceholder.typicode.com
+GET /issue/NC-5849 HTTP/1.1
+Host: yt.dasreda.ru
 
 
 ###

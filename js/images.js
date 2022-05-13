@@ -1,13 +1,16 @@
 import { loadData } from "./load.js";
 import { showStatusMessage } from "./status-messages.js";
 
-const createImages = (data) => {
+const createImages = (data, filter = '') => {
     const pictureTemplate = document.querySelector('#picture')
     .content
     .querySelector('.picture');
 
     const imagesFragment = document.createDocumentFragment();
     const pictures = document.querySelector('.pictures');
+    pictures.querySelectorAll('.picture').forEach((picture) => {
+        picture.remove();
+    })
 
     data.forEach((element) => {
         const picture = pictureTemplate.cloneNode(true);
@@ -21,3 +24,5 @@ const createImages = (data) => {
 }
 
 loadData('https://24.javascript.pages.academy/kekstagram/data', createImages, showStatusMessage('connection-error'));
+
+export { createImages };

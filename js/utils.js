@@ -23,5 +23,17 @@ function checkStringLength(string, maxLength) {
     return console.log(string.length >= maxLength ? true : false);
 }
 
+const getUniqueNumbersArray = (arrayLength, minValue, maxValue) => {
+    const array = [];
+    while (array.length < arrayLength) {
+        const randomNumber = getRandomIntFromRange(minValue, maxValue);
+        if (!array.includes(randomNumber)) {
+            array.push(randomNumber);
+        } else {
+            continue;
+        }
+    }
+    return array;
+}
 
-export { getRandomIntFromRange }
+export { getRandomIntFromRange, getUniqueNumbersArray }

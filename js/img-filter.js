@@ -2,25 +2,27 @@
 import { loadData } from "./load.js";
 import { createImages } from './images.js';
 import { showStatusMessage } from "./status-messages.js";
-// 5.3. При переключении фильтров, отрисовка изображений, подходящих под новый фильтр, должна производиться не чаще, чем один раз 500 мс (устранение
-// дребезга).
+import { getUniqueNumbersArray } from './utils.js';
 // 6. Необязательная функциональность
 // 6.1. После выбора изображения пользователем с помощью стандартного контрола загрузки файла #upload-file , нужно подставить его в форму редактирования вместо тестового изображения.
 
 
 const ACTIVE_FILTER_CLASS = 'img-filters__button--active';
-const FILTER_DEFAULT = 'filter-default';
 const FILTER_RANDOM = 'filter-random';
 const FILTER_DISCUSSED = 'filter-discussed';
+const MAX_RANDOM_PICTURES = 10;
+const ZERO_NUMBER = 0;
+
 const Filters = {
-    random() {
-        console.log('сработал фильтр random');
+    random(data) {
+        const randomizedData = getUniqueNumbersArray(MAX_RANDOM_PICTURES, ZERO_NUMBER, data.length);
+        randomizedData.forEach((randomNumber, i) => {
+        randomizedData[i] = data[randomNumber];
+        })
+        return randomizedData;
     },
-    discussed() {
-        console.log('сработал фильтр discussed');
-    },
-    default() {
-        console.log('сработал фильтр default');
+    discussed(data) {
+        return data.slice().sort(Filters.sortByComments);  
     },
     sortByComments(a,b) {
         if (a.comments.length < b.comments.length) {
@@ -68,5 +70,5 @@ imgFilterForm.addEventListener('click', _.debounce(loadfilteredData, RERENDER_DE
 function loadFilteredPictures(filter) {
     loadData('https://24.javascript.pages.academy/kekstagram/data', createImages, showStatusMessage('connection-error'), filter);
 }
-console.log(loadFilteredPictures);
+
 export { Filters };

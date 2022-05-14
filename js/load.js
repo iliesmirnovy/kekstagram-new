@@ -1,6 +1,5 @@
 import { closeModal } from './form.js';
 import { Filters } from './img-filter.js';
-import { getRandomIntFromRange } from './utils.js'
 
 function loadData(url, onSuccess = console.log, onFail = console.error, filter) {
     fetch(url)
@@ -16,25 +15,10 @@ function loadData(url, onSuccess = console.log, onFail = console.error, filter) 
         if (filter) {
             switch(filter) {
                 case Filters.random:
-                    const randomizedData = data.slice(0, 10);
-                    const uniqueNumbers = [];
-                    while (uniqueNumbers.length < randomizedData.length) {
-                        const randomNumber = getRandomIntFromRange(0, data.length);
-                        if (!uniqueNumbers.includes(randomNumber)) {
-                            uniqueNumbers.push(randomNumber);
-                        } else {
-                            continue;
-                        }
-                    }
-                    uniqueNumbers.forEach((randomNumber, i) => {
-                        randomizedData[i] = data[randomNumber];
-                        })
-                    onSuccess(randomizedData);  
+                    onSuccess(Filters.random(data));  
                 break;
                 case Filters.discussed:
-                    const sortedByCommentsData = data.slice();
-                    sortedByCommentsData.sort(Filters.sortByComments);
-                    onSuccess(sortedByCommentsData);
+                    onSuccess(Filters.discussed(data));
                 break;
                 default: 
                     onSuccess(data);

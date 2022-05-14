@@ -1,4 +1,4 @@
-function getRandomIntFromRange(value1, value2) {
+const getRandomIntFromRange = (value1, value2) => {
     // Проверяем переданы ли в функцию числа
     if (typeof(value1) !== 'number' || typeof(value2) !== 'number') {
         return console.log('В функцию передано не число');
@@ -14,7 +14,7 @@ function getRandomIntFromRange(value1, value2) {
     return Math.max(Math.min(Math.floor(Math.random()*valueMax), valueMax), valueMin);
 }
 
-function checkStringLength(string, maxLength) {
+const checkStringLength = (string, maxLength) => {
     // Проверяем передана ли в функцию строка
     if (typeof(string) !== 'string') {
         return console.log('В функцию передана не строка для проверки');

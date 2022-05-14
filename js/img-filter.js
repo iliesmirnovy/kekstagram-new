@@ -3,9 +3,6 @@ import { loadData } from "./load.js";
 import { createImages } from './images.js';
 import { showStatusMessage } from "./status-messages.js";
 import { getUniqueNumbersArray } from './utils.js';
-// 6. Необязательная функциональность
-// 6.1. После выбора изображения пользователем с помощью стандартного контрола загрузки файла #upload-file , нужно подставить его в форму редактирования вместо тестового изображения.
-
 
 const ACTIVE_FILTER_CLASS = 'img-filters__button--active';
 const FILTER_RANDOM = 'filter-random';
